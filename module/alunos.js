@@ -683,33 +683,38 @@ var alunos = [
             "status" : "Cursando"
         }
     ];
-//1 - Filtrar aluno pela matricula
+//1 - Filtrar aluno pela matricula // Status: Funcionando
 const filterAlunos = (id) => {
     let matriculaAluno = id 
     let aluno = []
     let erro = true 
 
     alunos.forEach(item => {
-        if (item.matricula.toLowerCase().includes(matriculaAluno.toLowerCase())) {
-            let infos = {}
-
-            infos.foto = item.foto,
-            infos.nome = item.nome,
-            infos.matricula = item.matricula,
-            infos.sexo = item.sexo
-
-            aluno.push(infos)
-            erro = false
-        }
+        item.curso.forEach(i => {
+            if (item.matricula.toLowerCase().includes(matriculaAluno.toLowerCase())) {
+                let infos = {}
+    
+                infos.foto = item.foto
+                infos.nome = item.nome
+                infos.matricula = item.matricula
+                infos.sexo = item.sexo
+                infos.nomeCurso = i.nome
+                infos.staus = item.status
+    
+                aluno.push(infos)
+                erro = false
+            }
+        })
     })
     if (erro) 
         return false
     else
         return aluno
 }
-//2 - Listar todos os alunos
+//2 - Listar todos os alunos // Status: Funcionando 
 const getListAlunos = () => {
     let listAlunos = [];
+    let erro = true
 
     alunos.forEach(item => {
         item.curso.forEach(info => {
@@ -719,26 +724,83 @@ const getListAlunos = () => {
                     nome: item.nome,
                     matricula: item.matricula,
                     sexo: item.sexo,
-                    nomeCurso: item.curso
+                    nomeCurso: info.nome,
+                    status: item.status
                 }
             )
         })
+        erro = false
     })
-    return listAlunos
+    if (erro) 
+        return false
+    else 
+        return listAlunos
 }
-//3 - Listar os Alunos do curso 
-// const getAlunosCursos = () => {
+//3 - Listar os Alunos do mesmo curso 
+const getAlunosCursos = (id) => {
+    let cursoAluno = id
+    let listAlunosCurso = []
+    let erro = true 
 
-// } 
+    alunos.forEach(item => {
+        item.curso.forEach(info => {
+            if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase()) {
+                let aluno = {}
+
+                aluno.foto = item.foto
+                aluno.nome = item.nome
+                aluno.matricula = item.matricula
+                aluno.sexo = item.sexo
+                aluno.curso = info.nome
+                aluno.status = item.status
+
+                listAlunosCurso.push(aluno)
+                erro = false
+            }
+        })
+    })
+    if (erro) 
+        return false
+    else 
+        return listAlunosCurso
+} 
 
 //4 - Filtrar pelo ano de conclusao
+const anoConclusao = (id) => {
+    let anoConc = id
+    let listAlunosAno = []
+    let erro = true 
 
+    alunos.forEach(item => {
+        item.curso.forEach(get => {
+            if (get.conclusao.toLowerCase().includes(anoConc.toLowerCase())) {
+                let ano = {}
+
+                ano.nome = item.nome
+                ano.foto = item.foto
+                ano.status = item.status
+                ano.anoConclusao = get.conclusao
+
+                listAlunosAno.push(ano)
+                erro = false
+            }
+        })
+    })
+    if (erro) 
+        return false
+    else 
+        return listAlunosAno
+}
 
 //Mostrar curso e informacoes das disciplinas//
 //Listar disciplinas de um aluno//
+
 //console.log(filterAlunos("20151001014"))
 //console.log(getListAlunos())
+console.log(getAlunosCursos());
 module.exports = {
     getListAlunos,
     filterAlunos,
+    getAlunosCursos,
+    anoConclusao
 }
