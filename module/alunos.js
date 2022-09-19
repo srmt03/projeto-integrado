@@ -767,13 +767,13 @@ const getAlunosCursos = (id) => {
 
 //4 - Filtrar pelo ano de conclusao
 const anoConclusao = (id) => {
-    let anoConc = id
+    let anoDeConclusao = id
     let listAlunosAno = []
     let erro = true 
 
     alunos.forEach(item => {
         item.curso.forEach(get => {
-            if (get.conclusao.toLowerCase().includes(anoConc.toLowerCase())) {
+            if (get.conclusao.toLowerCase().includes(anoDeConclusao.toLowerCase())) {
                 let ano = {}
 
                 ano.nome = item.nome
