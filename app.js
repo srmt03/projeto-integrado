@@ -90,7 +90,19 @@ app.use('/alunos/:curso', cors(), async function (request, response, next) {
     }
 })
 //EndPoint: Lista os alunos filtrando pelo ano de conclusao
+app.use('/alunos/:anoDeConclusao', cors(), async function (request, response, next) {
+    let id = resquest.params.anoDeConclusao
+    let alunosAno = anoConclusao(id)
+    let alunosAnoJSON = {}
 
+    if (alunosAno) {
+        alunosAnoJSON.alunosAno = alunosAno
+        response.status(200)
+        response.json(alunosAnoJSON)
+    } else {
+        response.status(404)
+    }
+})
 
 //Functiion do start da API
 app.listen(3030, function () {
