@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const app = express();
 //Import do arquivo de functions do sistema
 const { getCursos, getCursoByNome } = require("./module/cursos.js")
-const { getListAlunos, filterAlunos } = require("./module/alunos.js")
+const { getListAlunos, filterAlunos, getAlunosCursos, anoConclusao } = require("./module/alunos.js")
 
 app.use((request, response, next) => {
     //Permite especificar quem serao os IPs que podem acessar a API ('*' - significa todos)
@@ -76,9 +76,21 @@ app.use('/aluno/:matriculaAluno', cors(), async function (request, response, nex
     }
 })
 //EndPoint: Listar alunos do mesmo curso// 
+app.use('/alunos/:curso', cors(), async function (request, response, next) {
+    let id = request.params.cursoAluno
+    let  alunos = getAlunosCursos(id)
+    let alunosJSON = {}
 
+    if (alunos) {
+        alunosJSON.alunos = alunos
+        response.status(200)
+        response.json(alunosJSON)
+    } else {
+        response.status(404)
+    }
+})
+//EndPoint: Lista os alunos filtrando pelo ano de conclusao
 
- 
 
 //Functiion do start da API
 app.listen(3030, function () {
