@@ -1,5 +1,4 @@
 var alunos = [
-     
     {       "foto"  : "https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-4-avatar-2754580_120522.png",
             "nome"  : "Aline de Almeida Campos",
             "matricula" : "20151001001",
@@ -684,3 +683,62 @@ var alunos = [
             "status" : "Cursando"
         }
     ];
+//1 - Filtrar aluno pela matricula
+const filterAlunos = (id) => {
+    let matriculaAluno = id 
+    let aluno = []
+    let erro = true 
+
+    alunos.forEach(item => {
+        if (item.matricula.toLowerCase().includes(matriculaAluno.toLowerCase())) {
+            let infos = {}
+
+            infos.foto = item.foto,
+            infos.nome = item.nome,
+            infos.matricula = item.matricula,
+            infos.sexo = item.sexo
+
+            aluno.push(infos)
+            erro = false
+        }
+    })
+    if (erro) 
+        return false
+    else
+        return aluno
+}
+//2 - Listar todos os alunos
+const getListAlunos = () => {
+    let listAlunos = [];
+
+    alunos.forEach(item => {
+        item.curso.forEach(info => {
+            listAlunos.push(
+                {
+                    foto: item.foto,
+                    nome: item.nome,
+                    matricula: item.matricula,
+                    sexo: item.sexo,
+                    nomeCurso: item.curso
+                }
+            )
+        })
+    })
+    return listAlunos
+}
+//3 - Listar os Alunos do curso 
+// const getAlunosCursos = () => {
+
+// } 
+
+//4 - Filtrar pelo ano de conclusao
+
+
+//Mostrar curso e informacoes das disciplinas//
+//Listar disciplinas de um aluno//
+//console.log(filterAlunos("20151001014"))
+//console.log(getListAlunos())
+module.exports = {
+    getListAlunos,
+    filterAlunos,
+}

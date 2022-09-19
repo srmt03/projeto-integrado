@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 //Cria um objeto chamado app que sera especialista nas funcoes do express
 const app = express();
 //Import do arquivo de functions do sistema
+const { getCursos, getCursoByNome } = require("./module/cursos.js")
+const { getListAlunos, filterAlunos } = require("./module/alunos.js")
 
 app.use((request, response, next) => {
     //Permite especificar quem serao os IPs que podem acessar a API ('*' - significa todos)
@@ -18,13 +20,67 @@ app.use((request, response, next) => {
     
     next();
 });
+//EndPoint: Listar todos os cursos //Status: Funcionando
+app.get('/cursos', cors(), async function (resquest, response, next) {
+    let cursos = getCursos()
+    let cursosJSON = {}
+
+    if (cursos) {
+        cursosJSON.cursos = cursos
+        response.status(200)
+        response.json(cursosJSON)
+    } else {
+        response.status(404)
+    }
+})
+//EndPoint: Listar cursos pelo nome //Status: Funcionando
+app.get('/cursos/:nome', cors(), async function (resquest, response, next) {
+    let id = resquest.params.nome
+    let curso = getCursoByNome(id)
+    let cursoJSON = {}
+
+    if (curso) {
+        cursoJSON.curso = curso
+        response.status(200)
+        response.json(cursoJSON)
+    } else {
+        response.status(404)
+    }
+})
+
+//EndPoint: Listar todos os alunos // Status: Funcionando
+app.get('/alunos', cors(), async function (request, response, next) {
+    let alunos = getListAlunos()
+    let alunosJSON = {}
+
+    if (alunos) {
+        alunosJSON.alunos = alunos
+        response.status(200)
+        response.json(alunosJSON)
+    } else {
+        response.status(404)
+    }
+})
+//EndPoint: Filtrar aluno pela matricula //Status: Funcionando
+app.use('/aluno/:matriculaAluno', cors(), async function (request, response, next) {
+    let id = request.params.matriculaAluno
+    let aluno = filterAlunos(id)
+    let infosAluno = {}
+
+    if (aluno) {
+        infosAlunos.aluno = aluno
+        response.status(200)
+        response.json(infosAluno)
+    } else {
+        response.status(404)
+    }
+})
+//EndPoint: Listar alunos do mesmo curso// 
 
 
-
-
-
+ 
 
 //Functiion do start da API
 app.listen(3030, function () {
     console.log('Servidor aguardando requisicoes.');
-});
+})
