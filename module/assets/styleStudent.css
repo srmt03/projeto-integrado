@@ -1,0 +1,151 @@
+/* Reset do sistema */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+ul, ol {
+    list-style: none;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+
+
+/* Estilização do Header */
+header{
+    display: flex;
+    width: 100vw;
+    height: 110px;
+    background-color: #3347B0;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    display: flex;
+    margin-left: 98px;
+    gap: 11px;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 76px;
+}
+.logo-img{
+    height: 76px;
+}
+.logo-txt h3{
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+}
+.back{
+    display: flex;
+    margin-right: 98px;
+    color: white;
+    gap: 12px;
+    align-items: center;
+}
+.back i{
+    font-size: 36px;
+}
+.txt h3{
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+}
+
+
+
+
+/* Estilização do footer */
+footer{
+    width: 100vw;
+    height: 150px;
+    background-color: #3347B0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.conteiner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    flex-grow: 1;
+    padding-left: 98px;
+    padding-right: 98px;
+}
+.contato{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+}
+.img-contato{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.text-contato{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+.contato i{
+    font-size: 24px;
+}
+.contato p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+.phone{
+    display: flex;
+    gap: 12px;
+}
+.mail{
+    display: flex;
+    gap: 12px;
+}
+.local{
+    display: flex;
+    gap: 12px;
+}
+.rede-social ul{
+    height: 100%;
+    /* width: 48px; */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.rede-social a{
+    height: 48px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    border: 2px solid white;
+}
+.rede-social i{
+    font-size: 24px;
+}
+.rede-social a:hover{
+    background-color: white;
+    border-color: white;
+    color: #3347B0;
+    transition: all 0.5s; 
+}

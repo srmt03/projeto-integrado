@@ -736,7 +736,7 @@ const getListAlunos = () => {
     else 
         return listAlunos
 }
-//3 - Listar os Alunos do mesmo curso 
+//3 - Listar os Alunos do mesmo curso // Status: Funcionando
 const getAlunosCursos = (id) => {
     let cursoAluno = id
     let listAlunosCurso = []
@@ -744,7 +744,7 @@ const getAlunosCursos = (id) => {
 
     alunos.forEach(item => {
         item.curso.forEach(info => {
-            if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase()) {
+            if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase())) {
                 let aluno = {}
 
                 aluno.foto = item.foto
@@ -765,7 +765,7 @@ const getAlunosCursos = (id) => {
         return listAlunosCurso
 } 
 
-//4 - Filtrar pelo ano de conclusao
+//4 - Filtrar pelo ano de conclusao // Status: Funcionando 
 const anoConclusao = (id) => {
     let anoDeConclusao = id
     let listAlunosAno = []
@@ -797,7 +797,8 @@ const anoConclusao = (id) => {
 
 //console.log(filterAlunos("20151001014"))
 //console.log(getListAlunos())
-console.log(getAlunosCursos());
+//console.log(getAlunosCursos('desenvolvimento'))
+//console.log(anoConclusao('2022'));
 module.exports = {
     getListAlunos,
     filterAlunos,

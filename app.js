@@ -61,42 +61,42 @@ app.get('/alunos', cors(), async function (request, response, next) {
         response.status(404)
     }
 })
-//EndPoint: Filtrar aluno pela matricula //Status: Funcionando
+//EndPoint: Filtrar aluno pela matricula // Status: Funcionando
 app.use('/aluno/:matriculaAluno', cors(), async function (request, response, next) {
     let id = request.params.matriculaAluno
     let aluno = filterAlunos(id)
     let infosAluno = {}
 
     if (aluno) {
-        infosAlunos.aluno = aluno
+        infosAluno.aluno = aluno
         response.status(200)
         response.json(infosAluno)
     } else {
         response.status(404)
     }
 })
-//EndPoint: Listar alunos do mesmo curso// 
-app.use('/alunos/:curso', cors(), async function (request, response, next) {
+//EndPoint: Listar alunos do mesmo curso// Status: Funcionando
+app.use('/alunos/:cursoAluno', cors(), async function (request, response, next) {
     let id = request.params.cursoAluno
-    let  alunos = getAlunosCursos(id)
+    let listAlunosCurso = getAlunosCursos(id)
     let alunosJSON = {}
 
-    if (alunos) {
-        alunosJSON.alunos = alunos
+    if (listAlunosCurso) {
+        alunosJSON.alunos = listAlunosCurso
         response.status(200)
         response.json(alunosJSON)
     } else {
         response.status(404)
     }
 })
-//EndPoint: Lista os alunos filtrando pelo ano de conclusao
+//EndPoint: Lista os alunos filtrando pelo ano de conclusao // Status: Travado
 app.use('/alunos/:anoDeConclusao', cors(), async function (request, response, next) {
-    let id = resquest.params.anoDeConclusao
-    let alunosAno = anoConclusao(id)
+    let id = request.params.anoDeConclusao
+    let listAlunosAno = anoConclusao(id)
     let alunosAnoJSON = {}
 
-    if (alunosAno) {
-        alunosAnoJSON.alunosAno = alunosAno
+    if (listAlunosAno) {
+        alunosAnoJSON.alunosAno = listAlunosAno
         response.status(200)
         response.json(alunosAnoJSON)
     } else {
