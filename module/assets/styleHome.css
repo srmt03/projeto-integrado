@@ -211,7 +211,6 @@ footer{
 }
 .rede-social ul{
     height: 100%;
-    /* width: 48px; */
     display: flex;
     align-items: center;
     gap: 10px;

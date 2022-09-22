@@ -742,30 +742,32 @@ const getAlunosCursos = (id) => {
     let listAlunosCurso = []
     let erro = true 
 
-    alunos.forEach(item => {
-        item.curso.forEach(info => {
-            if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase())) {
-                let aluno = {}
+        alunos.forEach(item => {
+            item.curso.forEach(info => {
+                if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase())) {
+                    let aluno = {}
+    
+                    aluno.foto = item.foto
+                    aluno.nome = item.nome
+                    aluno.matricula = item.matricula
+                    aluno.curso = info.nome
+                    aluno.status = item.status
+    
+                    listAlunosCurso.push(aluno)
+                    erro = false
 
-                aluno.foto = item.foto
-                aluno.nome = item.nome
-                aluno.matricula = item.matricula
-                aluno.sexo = item.sexo
-                aluno.curso = info.nome
-                aluno.status = item.status
-
-                listAlunosCurso.push(aluno)
-                erro = false
-            }
+                    // const verificarStatus = (statusAluno) => statusAluno == status
+                    // const alunoStatus = listAlunosCurso.filter(verificarStatus)
+                }
+            })
         })
-    })
     if (erro) 
         return false
-    else 
+    else
         return listAlunosCurso
-} 
+}
 
-//4 - Filtrar pelo ano de conclusao // Status: Funcionando 
+//4 - Filtrar alunos pelo ano de conclusao // Status: Funcionando // DESAFIO
 const anoConclusao = (id) => {
     let anoDeConclusao = id
     let listAlunosAno = []
@@ -792,16 +794,46 @@ const anoConclusao = (id) => {
         return listAlunosAno
 }
 
-//Mostrar curso e informacoes das disciplinas//
-//Listar disciplinas de um aluno//
+//5 - Mostrar alunos de acordo com o status // Status: Funcionando
+const alunoStatus = (objeto, status) => {
+    let array = objeto
+    let statusAluno = status
+    let listAlunosStatus = []
+    let erro = true 
+
+    array.forEach(item => {
+        if (item.status.toLowerCase() == statusAluno.toLowerCase()) 
+        {
+            listAlunosStatus.push(
+                {
+                    foto: item.foto,
+                    nome: item.nome,
+                    matricula: item.matricula,
+                    status: item.status
+                }
+            )
+            erro = false
+        }
+    })
+    if (erro)
+        return false
+    else
+        return listAlunosStatus
+
+}
+
+//6 - Mostrar informacoes das todas as disciplinas de cada aluno // Status: Em Desenvolvimento
+
 
 //console.log(filterAlunos("20151001014"))
 //console.log(getListAlunos())
 //console.log(getAlunosCursos('desenvolvimento'))
 //console.log(anoConclusao('2022'));
+//console.log(alunoStatus('finalizado'));
 module.exports = {
     getListAlunos,
     filterAlunos,
     getAlunosCursos,
-    anoConclusao
+    anoConclusao,
+    alunoStatus
 }

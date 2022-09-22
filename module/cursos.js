@@ -13,7 +13,7 @@ var cursos = [
     }
 ];
 
-//Listar Cursos 
+//Listar Cursos // Status: Funcionando
 const getCursos = () => {
     let listCursos = []
     let erro = true
@@ -34,7 +34,7 @@ const getCursos = () => {
         return listCursos
 }
 
-//Localizar curso pelo nome
+//Localizar curso pelo nome // Status: Funcionando 
 const getCursoByNome = (id) => {
     let nome = id
     let curso = []

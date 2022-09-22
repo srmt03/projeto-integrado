@@ -67,6 +67,21 @@ header{
 
 
 
+/* Estilização do main */
+main{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.filtro{
+    background-color: #BCC2E5;
+    height: 60px;
+    width: 100vw;
+}
+
+
+
+
 /* Estilização do footer */
 footer{
     width: 100vw;
@@ -125,7 +140,6 @@ footer{
 }
 .rede-social ul{
     height: 100%;
-    /* width: 48px; */
     display: flex;
     align-items: center;
     gap: 10px;
