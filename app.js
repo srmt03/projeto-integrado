@@ -1,3 +1,11 @@
+/***********************************************************************************************************************
+ * Objetivo: Criar as rotas EndPoints do sistema 
+ * Autor: Samuel Matos
+ * Data de Criacao: 15/09/2022
+ * Data de Modificacao: 19/09/2022
+ * Data de Modificacao: 
+ * Versao: 1.0 *
+************************************************************************************************************************/
 //Import da biblioteca do express para criar a API
 const express = require('express');
 //Import da biblioteca do cors para manipullar as permissoes do http
