@@ -1,3 +1,11 @@
+/***********************************************************************************************************************
+ * Objetivo: Criar as functions para funcionalidade do sistema
+ * Autor: Samuel Matos
+ * Data de Criacao: 14/09/2022
+ * Data de Modificacao: 15/09/2022
+ * Data de Modificacao: 
+ * Versao: 2.0 *
+************************************************************************************************************************/
 var cursos = [
     {
         "nome"  :   "001 - Técnico em Desenvolvimento de Sistemas",
