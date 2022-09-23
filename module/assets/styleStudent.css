@@ -51,7 +51,6 @@ header{
 }
 .back{
     display: flex;
-    margin-right: 98px;
     color: white;
     gap: 12px;
     align-items: center;
@@ -62,6 +61,11 @@ header{
 .txt h3{
     font-family: 'Roboto', sans-serif;
     font-size: 36px;
+}
+.link-voltar{
+    margin-right: 98px;
+    height: 40px;
+    width: 150px;
 }
 
 
