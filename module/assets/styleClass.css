@@ -78,9 +78,29 @@ main{
     flex-grow: 1;
 }
 .filtro{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: #BCC2E5;
     height: 60px;
     width: 100vw;
+}
+.legenda{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 230px;
+    font-family: 'Roboto', sans-serif;
+}
+.blueBlock{
+    height: 24px;
+    width: 24px;
+    background-color: #3347B0;
+}
+.yellowBlock{
+    height: 24px;
+    width: 24px;
+    background-color: yellow;
 }
 
 
