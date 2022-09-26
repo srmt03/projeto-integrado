@@ -71,6 +71,101 @@ header{
 
 
 
+
+/* Estilização do Main */
+main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    margin: 96px;
+    flex-grow: 1;
+}
+.profile-aluno {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 12px 0px #00000040;
+    min-width: 500px;
+    /* width: fit-content; */
+    height: 500px;
+    padding: 40px;
+    gap: 4px;
+} 
+.aluno-photo {
+    width: 416px;
+    border-radius: 50%;
+}
+.aluno-name {
+    text-shadow: 0 4px 4px 0 #000;
+    color: #3347B0;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-weight: 500;
+}
+.notas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    box-shadow: 0px 0px 12px 0px #00000040;
+    height: 500px;
+    min-width: 500px;
+    /* width: fit-content; */
+    padding: 50px;
+}
+
+.subject-nota {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    width: 10px;
+
+}
+
+.progresso {
+    transform: rotate(-90deg);
+    width: 270px;
+    -webkit-appearance: none;
+    border-radius: 12px;
+}
+.progresso::-webkit-progress-bar {
+    background-color: #ebebeb;
+    border-radius: 0.2rem;
+}
+
+.progresso::-webkit-progress-value {
+    background-color: #3347B0;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #3347B0;
+}
+
+.reprovado::-webkit-progress-value {
+    background-color: #C11010;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #C11010;
+}
+
+.exame::-webkit-progress-value {
+    background-color: #E5B657;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #E5B657;
+}
+
+.subject-sigla {
+    font-weight: bolder;
+    color: #3347B0
+}
+
+
+
+
+
 /* Estilização do footer */
 footer{
     width: 100vw;
