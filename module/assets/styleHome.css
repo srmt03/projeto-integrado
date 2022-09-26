@@ -109,7 +109,8 @@ main{
     width: 570px;
     gap: 50px;
 }
-.rds{
+
+.cards {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,36 +121,21 @@ main{
     color: white;
     border-radius: 6px;
 }
-.rds i{
+
+.cards i {
     font-size: 76px;
 }
-.rds span{
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 76px;
-    font-weight: 500;
-}
-.ds{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #3347B0;
-    width: 470px;
-    height: 270px;
-    gap: 12px;
-    color: white;
-    border-radius: 6px;
-}
-.ds i{
-    font-size: 76px;
-}
-.ds span{
+
+.cards span {
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 76px;
     font-weight: 500;
 }
 
+.curso-icone{
+    height: 50px;
+}
 
 
 

@@ -691,7 +691,7 @@ var alunos = [
             "status" : "Cursando"
         }
     ];
-//1 - Filtrar aluno pela matricula // Status: Funcionando
+//1 - Filtrar aluno pela matricula (mostrar as informacoes das materias) // Status: Funcionando
 const filterAlunos = (id) => {
     let matriculaAluno = id 
     let aluno = []
@@ -699,19 +699,20 @@ const filterAlunos = (id) => {
 
     alunos.forEach(item => {
         item.curso.forEach(i => {
-            if (item.matricula.toLowerCase().includes(matriculaAluno.toLowerCase())) {
-                let infos = {}
-    
-                infos.foto = item.foto
-                infos.nome = item.nome
-                infos.matricula = item.matricula
-                infos.sexo = item.sexo
-                infos.nomeCurso = i.nome
-                infos.staus = item.status
-    
-                aluno.push(infos)
-                erro = false
-            }
+            i.disciplinas.forEach(info => {
+                if (item.matricula.toLowerCase().includes(matriculaAluno.toLowerCase())) {
+                    let infos = {}
+        
+                    infos.foto = item.foto
+                    infos.nomeAluno = item.nome
+                    infos.nomeCurso = i.nome
+                    infos.nomeDisciplina = info.nome
+                    infos.mediaDisciplina = info.media
+        
+                    aluno.push(infos)
+                    erro = false
+                }
+            })
         })
     })
     if (erro) 
@@ -719,7 +720,7 @@ const filterAlunos = (id) => {
     else
         return aluno
 }
-//2 - Listar todos os alunos // Status: Funcionando 
+//2 - Listar todos os alunos // Status: Funcionando // Desnecessaria
 const getListAlunos = () => {
     let listAlunos = [];
     let erro = true
@@ -749,10 +750,10 @@ const getAlunosCursos = (id) => {
     let cursoAluno = id
     let listAlunosCurso = []
     let erro = true 
-
+// info.nome.toUpperCase().includes(cursoAluno.toUpperCase())
         alunos.forEach(item => {
             item.curso.forEach(info => {
-                if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase())) {
+                if (cursoAluno.toLowerCase() == info.sigla.toLowerCase()) {
                     let aluno = {}
     
                     aluno.foto = item.foto
@@ -760,12 +761,11 @@ const getAlunosCursos = (id) => {
                     aluno.matricula = item.matricula
                     aluno.curso = info.nome
                     aluno.status = item.status
-    
+                    aluno.anoConclusao = info.conclusao
+
                     listAlunosCurso.push(aluno)
                     erro = false
 
-                    // const verificarStatus = (statusAluno) => statusAluno == status
-                    // const alunoStatus = listAlunosCurso.filter(verificarStatus)
                 }
             })
         })
@@ -775,26 +775,25 @@ const getAlunosCursos = (id) => {
         return listAlunosCurso
 }
 
-//4 - Filtrar alunos pelo ano de conclusao // Status: Funcionando // DESAFIO
-const anoConclusao = (id) => {
+//4 - Filtrar alunos do mesmo curso pelo ano de conclusao // Status: Funcionando // DESAFIO
+const anoConclusao = (objeto, id) => {
+    let array = objeto
     let anoDeConclusao = id
     let listAlunosAno = []
     let erro = true 
 
-    alunos.forEach(item => {
-        item.curso.forEach(get => {
-            if (get.conclusao.toLowerCase().includes(anoDeConclusao.toLowerCase())) {
-                let ano = {}
-
-                ano.nome = item.nome
-                ano.foto = item.foto
-                ano.status = item.status
-                ano.anoConclusao = get.conclusao
-
-                listAlunosAno.push(ano)
-                erro = false
-            }
-        })
+    array.forEach(item => {
+        if (item.anoConclusao.toLowerCase().includes(anoDeConclusao.toLowerCase())) {
+            listAlunosAno.push(
+                {
+                    foto: item.foto,
+                    nome: item.nome,
+                    ano: item.anoConclusao,
+                    curso: item.curso
+                }
+            )
+            erro = false
+        }
     })
     if (erro) 
         return false
@@ -802,7 +801,7 @@ const anoConclusao = (id) => {
         return listAlunosAno
 }
 
-//5 - Mostrar alunos de acordo com o status // Status: Funcionando
+//5 - Mostrar alunos do mesmo curso de acordo com o status // Status: Funcionando
 const alunoStatus = (objeto, status) => {
     let array = objeto
     let statusAluno = status
@@ -810,13 +809,13 @@ const alunoStatus = (objeto, status) => {
     let erro = true 
 
     array.forEach(item => {
-        if (item.status.toLowerCase() == statusAluno.toLowerCase()) 
+        if (item.status.toLowerCase().includes(statusAluno.toLowerCase())) 
         {
             listAlunosStatus.push(
                 {
                     foto: item.foto,
                     nome: item.nome,
-                    matricula: item.matricula,
+                    curso: item.curso,
                     status: item.status
                 }
             )
@@ -830,7 +829,7 @@ const alunoStatus = (objeto, status) => {
 
 }
 
-//6 - Mostrar informacoes das todas as disciplinas de cada aluno // Status: Em Desenvolvimento
+//6 - Mostrar informacoes das disciplinas de cada aluno // Status: Em Desenvolvimento
 
 
 //console.log(filterAlunos("20151001014"))
