@@ -80,17 +80,36 @@ main{
 .filtro{
     display: flex;
     justify-content: space-around;
+    /* justify-content: space-between; */
     align-items: center;
     background-color: #BCC2E5;
     height: 60px;
     width: 100vw;
+    font-size: 16px;
+    color: #3347B0;
+}
+.selections {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#status-select, #conclusion-select {
+    font-size: 16px;
+    color: #3347B0;
+}
+
+#status-select option, #conclusion-select option{
+    background-color: #3347B0;
+    color: white;
 }
 .legenda{
     display: flex;
     align-items: center;
-    gap: 10px;
-    width: 230px;
+    gap: 20px;
+    width: 340px;
     font-family: 'Roboto', sans-serif;
+    color: #3347B0;
 }
 .blueBlock{
     height: 24px;
@@ -144,7 +163,6 @@ main{
     text-align: center;
     color: white;
 }
-
 
 
 /* Estilização do footer */
