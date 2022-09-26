@@ -102,7 +102,48 @@ main{
     width: 24px;
     background-color: yellow;
 }
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    gap: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+.title {
+    font-size: 64px;
+    color: #3347B0;
+    font-weight: 500;
+    text-align: center;
+}
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 64px;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 200px;
+    height: 300px;
+    padding: 12px;
+}
+.student-photo {
+    width: 100vw;
+    height: 176px;
+    border-radius: 50%;
+}
 
+.student-name {
+    text-align: center;
+    color: white;
+}
 
 
 
