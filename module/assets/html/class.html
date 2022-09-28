@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styleClass.css">
-    <script src="../js/alunos.js" defer type="module"></script>
+    <script src="../js/classAlunos.js" defer type="module"></script>
     <script src="https://kit.fontawesome.com/5f2b9e6a48.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,30 +35,30 @@
         <div class="filtro">
             <div class="selections">
                 <select name="status" id="status-select">
-                    <option selected id="status">Status</option>
-                    <option selected id="finalizado">Finalizado</option>
-                    <option selected id="cursando">Cursando</option>
+                    <option value="status">Status</option>
+                    <option value="finalizado">Finalizado</option>
+                    <option value="cursando">Cursando</option>
                 </select>
                 <select name="ano-conclusao" id="conclusion-select">
-                    <option selected id ="Anos">Anos</option>
+                    <option value="anoConclusao ">Anos</option>
                     <!-- <option selected id ="2019">2019</option>
                     <option selected id ="2020">2020</option> -->
                 </select>
             </div>
             <div class="legenda">
                 <span>LEGENDA</span>
-                <div class="blueBlock"></div>
-                <span class="finalizado">Finalizado</span>
                 <div class="yellowBlock"></div>
+                <span class="finalizado">Finalizado</span>
+                <div class="blueBlock"></div>
                 <span class="curs">Cursando</span>
             </div>
         </div>
         <section class="content-container">
-            <!-- <span class="title" id="subject-name">Desenvolvimento de Sistemas</span> -->
+            <span class="title" id="subject-name">Desenvolvimento de Sistemas</span>
             <div class="cards-container">
-                <!-- <div href="./aluno.html" class="card yellow">
-                    <img src="./img/student.png" alt="" class="student-photo">
-                    <span class="student-name">Samuel Matos</span>
+                <!-- <div class="card azul">
+                    <img src="####" alt="Foto Estudante" class="student-photo">
+                    <span class="student-name"></span>
                 </div> -->
             </div>
         </section>

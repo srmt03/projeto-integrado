@@ -6,8 +6,6 @@ import { listarCursos } from "./cursosApi.js";
 
 let { cursos } = await listarCursos();
 
-console.log(cursos);
-
 
 const criarCards = (indice) => {
     const cardsContainer = document.querySelector('#cursos');
@@ -30,7 +28,6 @@ const criarCards = (indice) => {
     cards.addEventListener('click', (elemento) => {
         elemento.preventDefault();
         let idCurso = cards.id;
-        // console.log(idCurso)
 
         localStorage.setItem('curso', idCurso);
 

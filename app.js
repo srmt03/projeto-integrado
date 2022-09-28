@@ -62,7 +62,7 @@ app.get('/alunos', cors(), async function (request, response, next) {
 
 //EndPoints page1//
 
-//EndPoint: Listar todos os cursos // Status: Funcionando // Em consumo ...
+//EndPoint: Listar todos os cursos // Status: Funcionando
 app.get('/cursos', cors(), async function (resquest, response, next) {
     let cursos = getCursos()
     let cursosJSON = {}
@@ -128,8 +128,26 @@ app.use('/alunos/anoConclusao/:ano/curso/:nomeCurso', cors(), async function (re
         response.status(404)
     }
 })              
-//EndPoint: Lista os alunos do mesmo Curso filtrado pelo ano de conclusao mas que retorna de acordo com Status(finalizado ou cursando)) // Status: Fazer
+//EndPoint: Lista os alunos do mesmo Curso filtrado pelo ano de conclusao mas que retorna de acordo com Status(finalizado ou cursando)) // Status: Funcionando
+app.use('/alunos/anoDeConclusao/:ano/cursos/:nomeCurso/status/:status', cors(), async function (request, response, next) {
+    let ano = request.params.ano
+    let curso = request.params.nomeCurso
+    let status = request.params.status
 
+    let listAnoCurso = getAlunosCursos(curso)
+    let listAlunosAno = anoConclusao(listAnoCurso, ano)
+    let listAnoStatus = alunoStatus(listAlunosAno, status)
+
+    let alunosAnoJSON = {}
+    alunosAnoJSON.alunosAno = listAnoStatus
+
+    if (listAnoStatus) {
+        response.status(200)
+        response.json(alunosAnoJSON)
+    } else {
+        response.status(404)
+    }
+})
 
 //EndPoints page3 //
 

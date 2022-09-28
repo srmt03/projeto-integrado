@@ -1,13 +1,13 @@
 'use strict'
 
-import { getAlunosByCurso } from "./alunosApi.js";
+import { getAlunosByCurso, getAno, getAlunosByStatus, filterAlunosByStatusEAnoConclusao } from "./alunosApi.js";
 
 import { listarCursos } from './cursosApi.js';
 
 const curso = localStorage.getItem('curso');
 
 let { cursos } = await listarCursos();
-let alunosList = await getAlunosByCurso(curso);
+let { alunos } = await getAlunosByCurso(curso)
 
 let titleContainer = '';
 
@@ -29,12 +29,13 @@ const createCardsAlunos = async (item) => {
     card.classList.add('card');
 
     if (item.status.toLowerCase() ==  'cursando') {
-        card.classList.add('amarelo');
-    } else if (item.status.toLowerCase() == 'finalizado') {
         card.classList.add('azul');
+    } else if (item.status.toLowerCase() == 'finalizado') {
+        card.classList.add('amarelo');
     }
     
-    card.innerHTML = `
+    card.innerHTML = 
+    `
         <img src="${item.foto}" alt="Foto do Estudante" class="student-photo">
         <span class="student-name">${item.nome.toUpperCase()}</span>
     `;
@@ -43,74 +44,90 @@ const createCardsAlunos = async (item) => {
 
     card.addEventListener('click', (element) => {
         element.preventDefault();
-        const studentEnrollment = index.matricula;
+        const alunoInfos = item.matricula;
 
-        localStorage.setItem('enrollment', studentEnrollment);
+        localStorage.setItem('informacoes', alunoInfos);
 
-        location.href = './module/assets/html/student.html';
+        location.href = '../html/student.html';
     });
 }
+alunos.forEach(createCardsAlunos);
+
 const limparCards = () => {
     const cards = document.querySelectorAll('.card');
     cards.forEach((card) => card.remove())
 }
 
+const alunosAnos = (alunos) => {
+    const ano = []
+    alunos.forEach(aluno => {
+        if (!ano.includes(aluno.anoConclusao)) {
+          ano.push(aluno.anoConclusao)  
+        };
+    })
+    return ano
+}
+
+const anoSelectInput = document.querySelector('#conclusion-select'); 
+let anoSelectInputValor = document.querySelector('#conclusion-select').value; 
+
+let anos = alunosAnos(alunos)
+
+const createOptionsAno = async (anos) => {
+    anos.forEach(ano => {
+        const anoOption = document.createElement('option');
+        anoOption.value = ano;
+        anoOption.textContent = ano;
+        anoOption.classList.add('ano-option');
+    
+        anoSelectInput.appendChild(anoOption);
+    }) 
+}
+createOptionsAno(anos)
+
+const limparOptions = () => {
+    const option = document.querySelectorAll('.ano-option');
+    option.forEach((option) => option.remove())
+}
+
 const filterStatusSelect = document.querySelector('#status-select');
 let statusSelectValor = document.querySelector('#status-select').value;
 
-alunosList.forEach(createCardsAlunos);
-/****************************************************************************************************
-// const sanitizeOptions = () => {
-//     const option = document.querySelectorAll('.year-option');
-//     option.forEach((option) => option.remove())
-// }
+filterStatusSelect.addEventListener('change', async () => {
+    statusSelectValor = document.querySelector('#status-select').value;
+    anoSelectInputValor = document.querySelector('#conclusion-select').value;
 
-// const yearSelectInput = document.querySelector('#conclusion-select'); //
-// let yearSelectInputValue = document.querySelector('#conclusion-select').value; //
+    alunos = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor);
+    anos = await getAno(anos, curso);
 
+    limparOptions();
 
-// const createYearsOptions = async (year) => { 
-//     const yearOption = document.createElement('option');
-//     yearOption.value = year;
-//     yearOption.textContent = year;
-//     yearOption.classList.add('year-option');
+    createOptionsAno(anos)
+    // anos.forEach(createOptionsAno);
+
+    limparCards(); // limpando o container dos cards
+
+    if (alunos) {
+        alunos.forEach((e) => createCardsAlunos(e))
+    }
+});
+
+anoSelectInput.addEventListener('change', async () => {
+    anoSelectInputValor = document.querySelector('#conclusion-select').value;
+    statusSelectValor = document.querySelector('#status-select').value;
     
-//     yearSelectInput.appendChild(yearOption);
-// }
+    // alunos = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor);
+    alunos = await getAno(anos, curso);
+    console.log(alunos)
 
-// let years = await getYears(course, statusSelectValue);
-// years.forEach(createYearsOptions); //
+    limparOptions();
 
-// statusFilterSelect.addEventListener('change', async () => {
-//     statusSelectValue = document.querySelector('#status-select').value;
-//     yearSelectInputValue = document.querySelector('#conclusion-select').value;
-
-//     studentsList = await filterStudentsByStatusAndConclusionDate(course, statusSelectValue, yearSelectInputValue);
-//     years = await getYears(course, statusSelectValue);
-//     sanitizeOptions();
-//     years.forEach(createYearsOptions);
-
-
-//     sanitizeCards(); // limpando o container dos cards
-
-//     if (studentsList) {
-//         studentsList.forEach((e) => createStudentsCards(e)) // popula
-//     }
-// });
-
-// yearSelectInput.addEventListener('change', async () => {
-//     yearSelectInputValue = document.querySelector('#conclusion-select').value;
-//     statusSelectValue = document.querySelector('#status-select').value;
+    createOptionsAno(anos)
+    // anos.forEach(createOptionsAno);
     
-//     studentsList = await filterStudentsByStatusAndConclusionDate(course, statusSelectValue, yearSelectInputValue);
-//     years = await getYears(course, statusSelectValue);
-//     sanitizeOptions();
-//     years.forEach(createYearsOptions);
+    limparCards();
     
-//     sanitizeCards();
-    
-//     if (studentsList) {
-//         studentsList.forEach((e) => createStudentsCards(e))
-//     }
-// });
- ***************************************************************************************************/
+    if (alunos) {
+        alunos.forEach((e) => createCardsAlunos(e))
+    }
+});
