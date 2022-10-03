@@ -23,7 +23,7 @@ const getAno = async (ano, nomeCurso) => {
     ///alunos/anoConclusao/:ano/curso/:nomeCurso
 }
 //Pegar alunos do mesmo curso pelo status//
-const getAlunosByStatus = async (nomeCurso) => {
+const getAlunosByStatus = async (nomeCurso, statusAluno) => {
     const url = `http://localhost:3030/alunos/cursos/${nomeCurso}/status/${statusAluno}`;
     const response = await fetch(url);
     const data = await response.json();

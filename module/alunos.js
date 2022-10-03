@@ -789,7 +789,9 @@ const anoConclusao = (objeto, id) => {
                     foto: item.foto,
                     nome: item.nome,
                     ano: item.anoConclusao,
-                    curso: item.curso
+                    curso: item.curso,
+                    matricula: item.matricula,
+                    ano: item.anoConclusao
                 }
             )
             erro = false
@@ -816,7 +818,9 @@ const alunoStatus = (objeto, status) => {
                     foto: item.foto,
                     nome: item.nome,
                     curso: item.curso,
-                    status: item.status
+                    status: item.status,
+                    matricula: item.matricula,
+                    ano: item.anoConclusao
                 }
             )
             erro = false
