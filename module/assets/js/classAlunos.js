@@ -1,6 +1,5 @@
 'use strict'
 
-//getAno, getAlunosByStatus, filterAlunosByStatusEAnoConclusao
 import { getAlunosByCurso, getAno, getAlunosByStatus, filterAlunosByStatusEAnoConclusao } from "./alunosApi.js";
 
 import { listarCursos } from './cursosApi.js';
@@ -54,10 +53,10 @@ const createCardsAlunos = async (item) => {
 }
 alunos.forEach(createCardsAlunos);
 
-// const limparCards = () => {
-//     const cards = document.querySelectorAll('.card');
-//     cards.forEach((card) => card.remove())
-// }
+const limparCards = () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card) => card.remove())
+}
 
 const alunosAnos = (alunos) => {
     const ano = []
@@ -86,98 +85,75 @@ const createOptionsAno = async (anos) => {
 }
 createOptionsAno(anos)
 
-// const limparOptions = () => {
-//     const option = document.querySelectorAll('.ano-option');
-//     option.forEach((option) => option.remove())
-// }
+const limparOptions = () => {
+    const option = document.querySelectorAll('.ano-option');
+    option.forEach((option) => option.remove())
+}
 
-// const filterStatusSelect = document.querySelector('#status-select');
-// let statusSelectValor = document.querySelector('#status-select').value;
-
-// let { alunosStatus } = await getAlunosByStatus(curso, statusSelectValor);
-// console.log(alunosStatus);
-// //alunosStatus.forEach(createCardsAlunos);
-// let { alunosAno } = await getAno(curso, anoSelectInputValor)
-// console.log(alunosAno);
-// //alunosAno.forEach(createCardsAlunos);
+const filterStatusSelect = document.querySelector('#status-select');
+let statusSelectValor = document.querySelector('#status-select').value;
 
 // filterStatusSelect.addEventListener('change', async () => {
-//     statusSelectValor = document.querySelector('#status-select').value;
-//     anoSelectInputValor = document.querySelector('#conclusion-select').value;
-
-//     alunosStatus.forEach(createCardsAlunos);
-//     //alunos = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor);
-//     //anos = await getAno(anos, curso);
-//     alunosAno.forEach(createCardsAlunos);
-
-//     limparOptions();
-
-//     createOptionsAno(anos)
-
+//     statusSelectValor = document.querySelector('#status-select').value
 //     limparCards();
-
-//     if (alunos) {
-//         alunos.forEach((e) => createCardsAlunos(e))
-//     }
-// });
-// anoSelectInput.addEventListener('change', async () => {
-//     anoSelectInputValor = document.querySelector('#conclusion-select').value;
-//     statusSelectValor = document.querySelector('#status-select').value;
-    
-//     alunosStatus.forEach(createCardsAlunos);
-//     // alunos = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor);
-//     //alunos = await getAno(anos, curso);
-//     alunosAno.forEach(createCardsAlunos);
-
-//     limparOptions();
-
-//     createOptionsAno(anos)
-    
-//     limparCards();
-    
-//     if (alunos) {
-//         alunos.forEach((e) => createCardsAlunos(e))
+//     if (statusSelectValor == 'status') {
+//         alunos.forEach(createCardsAlunos);
+//     } else {
+//         let { statusAluno } = await getAlunosByStatus(curso, statusSelectValor);
+//         statusAluno.forEach(createCardsAlunos);
 //     }
 // });
 
 
-// filterStatusSelect.addEventListener('change', async () => {
-//     statusSelectValor = document.querySelector('#status-select').value;
-//     anoSelectInputValor = document.querySelector('#conclusion-select').value;
-
-//     alunos = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor);
-//     anos = await getAno(anos, curso);
-
-//     limparOptions();
-
-//     createOptionsAno(anos)
-//     // anos.forEach(createOptionsAno);
-
-//     limparCards(); // limpando o container dos cards
-
-//     if (alunos) {
-//         alunos.forEach((e) => createCardsAlunos(e))
-//     }
-// });
-
+filterStatusSelect.addEventListener('change', async () => {
+    statusSelectValor = document.querySelector('#status-select').value;
+    anoSelectInputValor = document.querySelector('#conclusion-select').value;
+    limparOptions();
+    createOptionsAno(anos)
+    limparCards();
+    if (statusSelectValor == 'status' && anoSelectInputValor == 'anoConclusao') {
+        alunos.forEach(createCardsAlunos);
+    } else if (statusSelectValor == 'status') {
+        let { alunosAno } = await getAno(curso, anoSelectInputValor);
+        alunosAno.forEach(createCardsAlunos);    
+    } else if (anoSelectInputValor == 'anoConclusao') {
+        let { statusAluno } = await getAlunosByStatus(curso, statusSelectValor);
+        statusAluno.forEach(createCardsAlunos);    
+    } else {
+        let { alunosStatus } = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor );
+        alunosStatus.forEach(createCardsAlunos);    
+    }
+});
 
 
 // anoSelectInput.addEventListener('change', async () => {
 //     anoSelectInputValor = document.querySelector('#conclusion-select').value;
 //     statusSelectValor = document.querySelector('#status-select').value;
-    
-//     // alunos = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor);
-//     alunos = await getAno(anos, curso);
-//     console.log(alunos)
-
 //     limparOptions();
-
 //     createOptionsAno(anos)
-//     // anos.forEach(createOptionsAno);
-    
 //     limparCards();
-    
-//     if (alunos) {
-//         alunos.forEach((e) => createCardsAlunos(e))
+//     if (statusSelectValor == 'status' && anoSelectInputValor == 'anoConclusao') {
+//         alunos.forEach(createCardsAlunos);
+//     } else if (statusSelectValor == 'status') {
+//         let { alunosAno } = await getAno(curso, anoSelectInputValor);
+//         alunosAno.forEach(createCardsAlunos);    
+//     } else if (anoSelectInputValor == 'anoConclusao') {
+//         let { statusAluno } = await getAlunosByStatus(curso, statusSelectValor);
+//         statusAluno.forEach(createCardsAlunos);    
+//     } else {
+//         let { alunosStatus } = await filterAlunosByStatusEAnoConclusao(curso, statusSelectValor, anoSelectInputValor );
+//         alunosStatus.forEach(createCardsAlunos);    
+//     }
+// });
+
+// anoSelectInput.addEventListener('change', async () => {
+//     anoSelectInputValor = document.querySelector('#conclusion-select').value;
+//     console.log(anoSelectInputValor);
+//     limparCards();
+//     if (anoSelectInputValor == 'anoConclusao') {    
+//         alunos.forEach(createCardsAlunos);
+//     } else {
+//         let { alunosAno } = await getAno(anoSelectInputValor, curso);
+//         alunosAno.forEach(createCardsAlunos);
 //     }
 // });

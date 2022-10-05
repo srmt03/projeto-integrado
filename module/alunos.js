@@ -4,7 +4,8 @@
  * Data de Criacao: 14/09/2022
  * Data de Modificacao: 15/09/2022
  * Data de Modificacao: 19/09/2022 
- * Versao: 3.0 *
+ * Data de Modificacao: 05/10/2022
+ * Versao: 4.0 *
 ************************************************************************************************************************/
 var alunos = [
     {       "foto"  : "https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-4-avatar-2754580_120522.png",
@@ -702,7 +703,7 @@ const filterAlunos = (id) => {
             i.disciplinas.forEach(info => {
                 if (item.matricula.toLowerCase().includes(matriculaAluno.toLowerCase())) {
                     let infos = {}
-        
+
                     infos.foto = item.foto
                     infos.nomeAluno = item.nome
                     infos.nomeCurso = i.nome
@@ -750,7 +751,6 @@ const getAlunosCursos = (id) => {
     let cursoAluno = id
     let listAlunosCurso = []
     let erro = true 
-// info.nome.toUpperCase().includes(cursoAluno.toUpperCase())
         alunos.forEach(item => {
             item.curso.forEach(info => {
                 if (cursoAluno.toLowerCase() == info.sigla.toLowerCase()) {
@@ -833,10 +833,8 @@ const alunoStatus = (objeto, status) => {
 
 }
 
-//6 - Mostrar informacoes das disciplinas de cada aluno // Status: Em Desenvolvimento
+console.log(filterAlunos("20151001014"))
 
-
-//console.log(filterAlunos("20151001014"))
 //console.log(getListAlunos())
 //console.log(getAlunosCursos('desenvolvimento'))
 //console.log(anoConclusao('2022'));

@@ -101,7 +101,7 @@ app.use('/alunos/cursos/:nomeCurso/status/:statusAluno', cors(), async function 
     let listAlunosCurso = getAlunosCursos(curso)
     let listAlunosStatus = alunoStatus(listAlunosCurso, status)
     let alunosStatusJSON = {}
-    alunosStatusJSON.alunosStatus = listAlunosStatus
+    alunosStatusJSON.statusAluno = listAlunosStatus
 
     if (listAlunosStatus) {
         response.status(200)
@@ -139,7 +139,7 @@ app.use('/alunos/anoDeConclusao/:ano/cursos/:nomeCurso/status/:status', cors(), 
     let listAnoStatus = alunoStatus(listAlunosAno, status)
 
     let alunosAnoJSON = {}
-    alunosAnoJSON.alunosAno = listAnoStatus
+    alunosAnoJSON.alunosAnoStatus = listAnoStatus
 
     if (listAnoStatus) {
         response.status(200)
